@@ -1,4 +1,5 @@
 // RealNumbers class goes here!
+import java.util.*;
 
 public class RealNumbers{
   //Given two substrings, return the sum
@@ -35,9 +36,19 @@ public class RealNumbers{
     }
   }
 
+  // Given a value, return its square root using Newton's Method
+  public static double sqrt(String value){
+    double result = 1;
+    double a = (Double.parseDouble(value));
+      for (int i = 0; i < Double.parseDouble(value); i++){
+        result = 0.5 * (result + a / result);
+      }
+      return (int)result;
+    }
+
   //Testing methods
   public static void main(String[] args) {
-    System.out.println("Testing RealNumber");
+    System.out.println("Testing RealNumbers");
 
     String a = "4";
     String b = "2";
@@ -47,5 +58,6 @@ public class RealNumbers{
     System.out.println(divide(a, b)); //2
     System.out.println(GCF("9","15")); //3
     System.out.println(GCF("100","1")); //1
+    System.out.println(sqrt("4")); //2
   }
 }
