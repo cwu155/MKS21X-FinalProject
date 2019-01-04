@@ -6,4 +6,7 @@ public class RealNumbers{
   public int subtract(String one, String two){
     return Integer.parseInt(one) - Integer.parseInt(two);
   }
+  public int mulitply(String one, String two){
+    return Integer.parseInt(one) * Integer.parseInt(two);
+  }
 }
