@@ -9,3 +9,5 @@
 # January 4th 
              - Added main that tests RealNumber methods
              - Created sqrt function using Newton's Method
+# January 6th
+             - Created containsVariable function that determines if the string has a variable in it and what that variable is
