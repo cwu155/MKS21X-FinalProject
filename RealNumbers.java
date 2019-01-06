@@ -2,6 +2,116 @@
 import java.util.*;
 
 public class RealNumbers{
+  String var;
+  //Returns if the the string contains a variable, and if so, sets var to the variable
+  public boolean containsVariable(String s){
+    s = s.toLowerCase();
+    if (s.contains("a")){
+      var = "a";
+      return true;
+    }
+    else if (s.contains("b")){
+      var = "b";
+      return true;
+    }
+    else if (s.contains("c")){
+      var = "c";
+      return true;
+    }
+    else if (s.contains("d")){
+      var = "d";
+      return true;
+    }
+    else if (s.contains("e")){
+      var = "e";
+      return true;
+    }
+    else if (s.contains("f")){
+      var = "f";
+      return true;
+    }
+    else if (s.contains("g")){
+      var = "g";
+      return true;
+    }
+    else if (s.contains("h")){
+      var = "h";
+      return true;
+    }
+    else if (s.contains("i")){
+      var = "i";
+      return true;
+    }
+    else if (s.contains("j")){
+      var = "j";
+      return true;
+    }
+    else if (s.contains("k")){
+      var = "k";
+      return true;
+    }
+    else if (s.contains("l")){
+      var = "l";
+      return true;
+    }
+    else if (s.contains("m")){
+      var = "m";
+      return true;
+    }
+    else if (s.contains("n")){
+      var = "n";
+      return true;
+    }
+    else if (s.contains("o")){
+      var = "o";
+      return true;
+    }
+    else if (s.contains("p")){
+      var = "p";
+      return true;
+    }
+    else if (s.contains("q")){
+      var = "q";
+      return true;
+    }
+    else if (s.contains("r")){
+      var = "r";
+      return true;
+    }
+    else if (s.contains("s")){
+      var = "s";
+      return true;
+    }
+    else if (s.contains("t")){
+      var = "t";
+      return true;
+    }
+    else if (s.contains("u")){
+      var = "u";
+      return true;
+    }
+    else if (s.contains("v")){
+      var = "v";
+      return true;
+    }
+    else if (s.contains("w")){
+      var = "w";
+      return true;
+    }
+    else if (s.contains("x")){
+      var = "x";
+      return true;
+    }
+    else if (s.contains("y")){
+      var = "y";
+      return true;
+    }
+    else if (s.contains("z")){
+      var = "z";
+      return true;
+    }
+    return false;
+  }
   //Given two substrings, return the sum
   public static int add(String one, String two){
     return Integer.parseInt(one) + Integer.parseInt(two);
