@@ -13,3 +13,5 @@
              - Created containsVariable function that determines if the string has a variable in it and what that variable is
              - Implemented Token class, used in the Shunting-Yard Algorithm.
                The Shunting-Yard Algorithm is used to evaluate expressions in PEMDAS order.
+# January 7th
+             - Modified add to be able to work on strings with a single variable
