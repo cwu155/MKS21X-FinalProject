@@ -4,12 +4,16 @@ public class Equation{
   //Solving an expression or equation using PEMDAS - Order of Operations
   //Shunting-Yard Algorithm
 
+  public static String priority2 = "+-";
+  public static String priority3 = "*/";
+  public static String priority4 = "^";
+
   //Creates an array of tokens.
-  public static String input = "1 + 2 + 3"; // Should take a user input in the future
+  public static String input = "1 + 2 / 4"; // Should take a user input in the future
   public static StringTokenizer st = new StringTokenizer(input); //Create StringTokenizer Object
   public static List<Token> Tokens = new ArrayList<Token>();   //Create ArrayList Object
 
-  //Adds tokens from input into ArrayList Tokens
+  //Adds tokens from the user's input into ArrayList Tokens.
   public static void addTokens(){
     while(st.hasMoreTokens()) {
       Token newToken = new Token(st.nextToken(), 1);
@@ -17,6 +21,22 @@ public class Equation{
       }
     }
 
+  //Sets the priority of each token. This code should be more efficient.?
+  public static void setPriority(){
+    for (Token element : Tokens){
+      if (priority2.contains(element.getString())){
+        element.setPriority(2);
+      } else if (priority3.contains(element.getString())){
+        element.setPriority(3);
+      } else if (priority4.contains(element.getString())){
+        element.setPriority(4);
+      } else {
+        element.setPriority(1);
+      }
+    }
+  }
+
+  //Checks to see if the token is numeric.
   public static boolean isNumber(Token inputToken){
     try {
         double token = Double.parseDouble(inputToken.getString());
@@ -25,10 +45,6 @@ public class Equation{
         }
       return true;
   }
-
-  // public static void toString(Token value){
-  //   StringTokenizer thingy = new StringTokenizer(value);
-  // }
 
   //Creates a stack of operations.
   public static List<String> Stack = new ArrayList<String>();
@@ -61,9 +77,9 @@ public class Equation{
 //   }
     public static void main(String[] args) { //Testing purposes
       addTokens();
-
+      setPriority();
       for(Token element : Tokens) {
-            System.out.println(element.getString());
+            System.out.println(element.getString() + ": Priority is " + element.getPriority());
         }
 
       }
