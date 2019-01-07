@@ -2,6 +2,7 @@
 import java.util.*;
 
 public class RealNumbers{
+  String sub;
   String var;
   //Returns if the the string contains a variable, and if so, sets var to the variable
   public boolean containsVariable(String s){
@@ -160,17 +161,17 @@ public class RealNumbers{
     }
 
   //Testing methods
-  public void main(String[] args) {
-    System.out.println("Testing RealNumbers");
-
-    RealNumbers a = "4";
-    RealNumbers b = "2";
-    System.out.println(a.add(b)); //6
-    System.out.println(a.subtract(b)); //2
-    System.out.println(a.multiply(b)); //8
-    System.out.println(a.divide(b)); //2
-    System.out.println("9".GCF("15")); //3
-    System.out.println("100".GCF("1")); //1
-    System.out.println(sqrt("4")); //2
-  }
+//   public void main(String[] args) {
+//     System.out.println("Testing RealNumbers");
+//
+//     RealNumbers a = "4";
+//     RealNumbers b = "2";
+//     System.out.println(a.add(b)); //6
+//     System.out.println(a.subtract(b)); //2
+//     System.out.println(a.multiply(b)); //8
+//     System.out.println(a.divide(b)); //2
+//     System.out.println("9".GCF("15")); //3
+//     System.out.println("100".GCF("1")); //1
+//     System.out.println(sqrt("4")); //2
+//   }
 }
