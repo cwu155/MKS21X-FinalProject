@@ -4,6 +4,7 @@ public class Equation{
   //Solving an expression or equation using PEMDAS - Order of Operations
   //Shunting-Yard Algorithm
 
+  //Creates an array of tokens.
   public static String input = "1 + 2"; // Should take a user input in the future
   public static StringTokenizer st = new StringTokenizer(input, " "); //Create StringTokenizer Object
   public static List<String> Tokens = new ArrayList<String>();   //Create ArrayList Object
@@ -14,6 +15,21 @@ public class Equation{
       Tokens.add(st.nextToken());
       }
     }
+
+  public static boolean isNumber(String inputToken){
+    try {
+        double token = Double.parseDouble(inputToken);
+        } catch (NumberFormatException nfe) {
+          return false;
+        }
+      return true;
+  }
+
+  //Creates a stack of operations.
+  public static List<String> Operations = new ArrayList<String>();
+
+  //Creates a queue of the output.
+  public static List<String> Output = new ArrayList<String>();
 
         // While there are tokens to be read:
         // Read a token
@@ -29,6 +45,9 @@ public class Equation{
         //               Pop the left bracket from the stack and discard it
         //       While there are operators on the stack, pop them to the queue
 
-    //public static void main(String[] args) { //Testing purposes
-    //}
-}
+
+    public static void main(String[] args) { //Testing purposes
+      addTokens();
+
+      }
+    }
