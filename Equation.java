@@ -66,15 +66,17 @@ public class Equation{
         //               Pop the left bracket from the stack and discard it
         //       While there are operators on the stack, pop them to the queue
 
-//Evaluates the equation.
-// public static Double evaluate(){
-//   for (int i = 0; i < Tokens.length; i++){
-//     if (is.Number(Tokens.get(i)) == true){
-//       Queue.add(Tokens.get(i));
-//     } else {
-//       Stack.add(Tokens.get(i));
-//     }
-//   }
+//Forms the operations stack and output stack. [Currently in progress]
+public static void formStacks(){
+  for (int i = 0; i < Tokens.size(); i++){
+    if (isNumber(Tokens.get(i)) == true){
+      Queue.add(Tokens.get(i).getString());
+    } else {
+      Stack.add(Tokens.get(i).getString());
+    }
+  }
+}
+
     public static void main(String[] args) { //Testing purposes
       addTokens();
       setPriority();
