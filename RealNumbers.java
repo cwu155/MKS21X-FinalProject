@@ -15,31 +15,56 @@ public class RealNumbers{
     }
     return false;
   }
+  public String Variable(String s){
+    for (int i = 0; i < s.length(); i++){
+      if (!(numbers.contains(s.substring(i,i+1)))){
+        return s.substring(i,i+1);
+      }
+    }
+    return "";
+  }
   //Given two substrings, return the sum
   // public RealNumbers(String s){
   //   sub = s;
   // }
-  // public int add(String other){
-  //   return Integer.parseInt(this) + Integer.parseInt(other);
-  // }
+   public String add(String one, String two){
+     if (containsVariable(one)){
+       if(containsVariable(two)){
+         if (Variable(one).equals(Variable(two))){
+           String vari = Variable(one);
+           String temp1 = one.replace(vari,"");
+           String temp2 = two.replace(vari,"");
+           return add(temp1,temp2) + vari;
+         }
+         else{
+           return one + two;
+         }
+       }
+       return one + two;
+     }
+     if (containsVariable(two) && !containsVariable(one)){
+       return one + two;
+     }
+     return Integer.parseInt(one) + Integer.parseInt(two) + "";
+   }
   // //Given two substrings, return the difference
-  // public int subtract(String other){
-  //   return Integer.parseInt(this) - Integer.parseInt(other);
+  // public int subtract(String one, String two){
+  //   return Integer.parseInt(one) - Integer.parseInt(two);
   // }
   // //Given two substrings, return the product
-  // public int multiply(String other){
-  //   return Integer.parseInt(this) * Integer.parseInt(other);
+  // public int multiply(String one, String two){
+  //   return Integer.parseInt(one) * Integer.parseInt(two);
   // }
   // //Given two substrings, return the quotient
-  // public int divide(String other){
-  //   return Integer.parseInt(this) / Integer.parseInt(other);
+  // public int divide(String one, String two){
+  //   return Integer.parseInt(one) / Integer.parseInt(two);
   // }
   // //Given two substrings, return the GCF using Euclid's method
   // //Made public for testing purposes
-  // public int GCF(String other){
+  // public int GCF(String one, String two){
   //   //Variables for convenience
-  //   int num1 = Integer.parseInt(this);
-  //   int num2 = Integer.parseInt(other);
+  //   int num1 = Integer.parseInt(one);
+  //   int num2 = Integer.parseInt(two);
   //   //If the second number is 0, then the GCF is the first number
   //   if(num2 == 0){
   //     return num1;
@@ -48,7 +73,7 @@ public class RealNumbers{
   //   //num2 in num1's place and num2 replaced by the remainder of num1 and num2
   //   else{
   //     int temp = num1 % num2;
-  //     return GCF(other,temp + "");
+  //     return GCF(two,temp + "");
   //   }
   // }
   //
