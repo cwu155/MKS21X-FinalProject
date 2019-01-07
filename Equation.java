@@ -21,7 +21,7 @@ public class Equation{
       }
     }
 
-  //Sets the priority of each token. This code should be more efficient.?
+  //Sets the priority of each token. This code should be more efficient.
   public static void setPriority(){
     for (Token element : Tokens){
       if (priority2.contains(element.getString())){
