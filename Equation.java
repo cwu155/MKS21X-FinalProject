@@ -5,31 +5,36 @@ public class Equation{
   //Shunting-Yard Algorithm
 
   //Creates an array of tokens.
-  public static String input = "1 + 2"; // Should take a user input in the future
-  public static StringTokenizer st = new StringTokenizer(input, " "); //Create StringTokenizer Object
-  public static List<String> Tokens = new ArrayList<String>();   //Create ArrayList Object
+  public static String input = "1 + 2 + 3"; // Should take a user input in the future
+  public static StringTokenizer st = new StringTokenizer(input); //Create StringTokenizer Object
+  public static List<Token> Tokens = new ArrayList<Token>();   //Create ArrayList Object
 
   //Adds tokens from input into ArrayList Tokens
   public static void addTokens(){
     while(st.hasMoreTokens()) {
-      Tokens.add(st.nextToken());
+      Token newToken = new Token(st.nextToken(), 1);
+      Tokens.add(newToken);
       }
     }
 
-  public static boolean isNumber(String inputToken){
+  public static boolean isNumber(Token inputToken){
     try {
-        double token = Double.parseDouble(inputToken);
+        double token = Double.parseDouble(inputToken.getString());
         } catch (NumberFormatException nfe) {
           return false;
         }
       return true;
   }
 
+  // public static void toString(Token value){
+  //   StringTokenizer thingy = new StringTokenizer(value);
+  // }
+
   //Creates a stack of operations.
-  public static List<String> Operations = new ArrayList<String>();
+  public static List<String> Stack = new ArrayList<String>();
 
   //Creates a queue of the output.
-  public static List<String> Output = new ArrayList<String>();
+  public static List<String> Queue = new ArrayList<String>();
 
         // While there are tokens to be read:
         // Read a token
@@ -45,9 +50,21 @@ public class Equation{
         //               Pop the left bracket from the stack and discard it
         //       While there are operators on the stack, pop them to the queue
 
-
+//Evaluates the equation.
+// public static Double evaluate(){
+//   for (int i = 0; i < Tokens.length; i++){
+//     if (is.Number(Tokens.get(i)) == true){
+//       Queue.add(Tokens.get(i));
+//     } else {
+//       Stack.add(Tokens.get(i));
+//     }
+//   }
     public static void main(String[] args) { //Testing purposes
       addTokens();
+
+      for(Token element : Tokens) {
+            System.out.println(element.getString());
+        }
 
       }
     }
