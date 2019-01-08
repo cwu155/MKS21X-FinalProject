@@ -100,9 +100,48 @@ public class RealNumbers{
      return Integer.parseInt(one) - Integer.parseInt(two) + "";
    }
   // //Given two substrings, return the product
-  // public int multiply(String one, String two){
-  //   return Integer.parseInt(one) * Integer.parseInt(two);
-  // }
+   public static String multiply(String one, String two){
+     //If string one has a variable...
+     if (containsVariable(one)){
+       //And string two has a variable...
+       if(containsVariable(two)){
+         //If the variable from the two strings are the same, muliply the numerical
+         //values of the two strings with the variable added at the end
+         if (Variable(one).equals(Variable(two))){
+           String vari = Variable(one);
+           String temp1 = one.replace(vari,"");
+           String temp2 = two.replace(vari,"");
+           if (multiply(temp1,temp2).equals("1")){
+             return vari + "^2";
+           }
+           else if (multiply(temp1,temp2).equals("-1")){
+             return "-" + vari + "^2";
+           }
+           else{
+             return multiply(temp1,temp2) + vari + "^2";
+           }
+         }
+         //If the varibles are not the same,
+         else{
+           String vari1 = Variable(one);
+           String vari2 = Variable(two);
+           String temp1 = one.replace(vari1,"");
+           String temp2 = two.replace(vari2,"");
+           return multiply(temp1,temp2) + vari1 + vari2;
+         }
+       }
+       String vari = Variable(one);
+       String temp = one.replace(vari,"");
+       return multiply(temp,two) + vari;
+     }
+     if (containsVariable(two) && !containsVariable(one)){
+       String vari = Variable(two);
+       String temp = two.replace(vari,"");
+       return multiply(one,temp) + vari;
+     }
+     //Else, return the product of the two strings
+     return Integer.parseInt(one) * Integer.parseInt(two) + "";
+   }
   // //Given two substrings, return the quotient
   // public int divide(String one, String two){
   //   return Integer.parseInt(one) / Integer.parseInt(two);
@@ -144,19 +183,21 @@ public class RealNumbers{
 
      String a = "4";
      String b = "2";
-     System.out.println(add(a,b)); //6
-     System.out.println(add("11x",b)); //11x+2
-     System.out.println(add("11x","12x")); //23x
-     System.out.println(add(a,"x"));//4+x
-     System.out.println(add("11x","12y"));//11x+12y
-     System.out.println(subtract(a,b)); //2
-     System.out.println(subtract("11x",b)); //11x -2
-     System.out.println(subtract("11x","12x")); //-x
-     System.out.println(subtract(a,"x")); //4-x
-     System.out.println(subtract("11x","12y")); //11x-12y
-//     System.out.println(a.subtract(b)); //2
-//     System.out.println(a.multiply(b)); //8
-//     System.out.println(a.divide(b)); //2
+//     System.out.println(add(a,b)); //6
+//     System.out.println(add("11x",b)); //11x+2
+//     System.out.println(add("11x","12x")); //23x
+//     System.out.println(add(a,"x"));//4+x
+//     System.out.println(add("11x","12y"));//11x+12y
+//     System.out.println(subtract(a,b)); //2
+//     System.out.println(subtract("11x",b)); //11x -2
+//     System.out.println(subtract("11x","12x")); //-x
+//     System.out.println(subtract(a,"x")); //4-x
+//     System.out.println(subtract("11x","12y")); //11x-12y
+     System.out.println(multiply(a,b)); //8
+     System.out.println(multiply("11x",b)); //22x
+     System.out.println(multiply("11x","12x")); //132x^2
+     System.out.println(multiply(a,"x")); //4x
+     System.out.println(multiply("11x","12y")); //132xy
 //     System.out.println("9".GCF("15")); //3
 //     System.out.println("100".GCF("1")); //1
 //     System.out.println(sqrt("4")); //2
