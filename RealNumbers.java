@@ -15,7 +15,9 @@ public class RealNumbers{
     }
     return false;
   }
-  public String Variable(String s){
+  //Given a string s with a single variable, loop through the string and return
+  //the variable
+  public static String Variable(String s){
     for (int i = 0; i < s.length(); i++){
       if (!(numbers.contains(s.substring(i,i+1)))){
         return s.substring(i,i+1);
@@ -26,31 +28,77 @@ public class RealNumbers{
   //Given two substrings, return the sum
   // public RealNumbers(String s){
   //   sub = s;
-  // }
-   public String add(String one, String two){
+   public static String add(String one, String two){
+     //If string one has a variable...
      if (containsVariable(one)){
+       //And string two has a variable...
        if(containsVariable(two)){
+         //If the variable from the two strings are the same, add the numerical
+         //values of the two strings with the variable added at the end
          if (Variable(one).equals(Variable(two))){
            String vari = Variable(one);
            String temp1 = one.replace(vari,"");
            String temp2 = two.replace(vari,"");
-           return add(temp1,temp2) + vari;
+           if (add(temp1,temp2).equals("1")){
+             return vari;
+           }
+           else if (add(temp1,temp2).equals("-1")){
+             return "-" + vari;
+           }
+           else{
+             return add(temp1,temp2) + vari;
+           }
          }
+         //If the varibles are not the same, they cannot be simplified further
+         //Therefore, return the two strings with a + sign in the middle
          else{
-           return one + two;
+           return one + "+" + two;
          }
        }
-       return one + two;
+       return one + "+" + two;
      }
      if (containsVariable(two) && !containsVariable(one)){
-       return one + two;
+       return one + "+" + two;
      }
+     //Else, return the value of the two strinsg added together
      return Integer.parseInt(one) + Integer.parseInt(two) + "";
    }
-  // //Given two substrings, return the difference
-  // public int subtract(String one, String two){
-  //   return Integer.parseInt(one) - Integer.parseInt(two);
-  // }
+   //Given two substrings, return the difference
+   public static String subtract(String one, String two){
+     //If string one has a variable...
+     if (containsVariable(one)){
+       //And string two has a variable...
+       if(containsVariable(two)){
+         //If the variable from the two strings are the same, subtract the numerical
+         //values of the two strings with the variable added at the end
+         if (Variable(one).equals(Variable(two))){
+           String vari = Variable(one);
+           String temp1 = one.replace(vari,"");
+           String temp2 = two.replace(vari,"");
+           if (subtract(temp1,temp2).equals("1")){
+             return vari;
+           }
+           else if (subtract(temp1,temp2).equals("-1")){
+             return "-" + vari;
+           }
+           else{
+             return subtract(temp1,temp2) + vari;
+           }
+         }
+         //If the varibles are not the same, they cannot be simplified further
+         //Therefore, return the two strings with a - sign in the middle
+         else{
+           return one + "-" + two;
+         }
+       }
+       return one + "-" + two;
+     }
+     if (containsVariable(two) && !containsVariable(one)){
+       return one + "-" + two;
+     }
+     //Else, return the difference of the two strings
+     return Integer.parseInt(one) - Integer.parseInt(two) + "";
+   }
   // //Given two substrings, return the product
   // public int multiply(String one, String two){
   //   return Integer.parseInt(one) * Integer.parseInt(two);
@@ -89,14 +137,23 @@ public class RealNumbers{
 
   //Testing methods
   public static void main(String[] args) {
-    System.out.println("Testing RealNumbers");
-    System.out.println(containsVariable("72"));
-    System.out.println(containsVariable("7x032942943"));
+//    System.out.println("Testing RealNumbers");
+//    System.out.println(containsVariable("72"));
+//    System.out.println(containsVariable("7x032942943"));
 
 
-//     RealNumbers a = "4";
-//     RealNumbers b = "2";
-//     System.out.println(a.add(b)); //6
+     String a = "4";
+     String b = "2";
+     System.out.println(add(a,b)); //6
+     System.out.println(add("11x",b)); //11x+2
+     System.out.println(add("11x","12x")); //23x
+     System.out.println(add(a,"x"));//4+x
+     System.out.println(add("11x","12y"));//11x+12y
+     System.out.println(subtract(a,b)); //2
+     System.out.println(subtract("11x",b)); //11x -2
+     System.out.println(subtract("11x","12x")); //-x
+     System.out.println(subtract(a,"x")); //4-x
+     System.out.println(subtract("11x","12y")); //11x-12y
 //     System.out.println(a.subtract(b)); //2
 //     System.out.println(a.multiply(b)); //8
 //     System.out.println(a.divide(b)); //2
