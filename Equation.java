@@ -9,7 +9,7 @@ public class Equation{
   public static String priority4 = "^";
 
   //Creates an array of tokens.
-  public static String input = "1 + 2 / 4"; // Should take a user input in the future
+  public static String input = "4 + 18 / ( 9 - 3 )"; // Should take a user input in the future
   public static StringTokenizer st = new StringTokenizer(input); //Create StringTokenizer Object
   public static List<Token> Tokens = new ArrayList<Token>();   //Create ArrayList Object
 
@@ -52,6 +52,7 @@ public class Equation{
   //Creates a queue of the output.
   public static List<String> Queue = new ArrayList<String>();
 
+
         // While there are tokens to be read:
         // Read a token
         //   If it's a number add it to queue
@@ -67,12 +68,17 @@ public class Equation{
         //       While there are operators on the stack, pop them to the queue
 
 //Forms the operations stack and output stack. [Currently in progress]
+// 4 + 18 / (9 - 3) --> 4, 18, 9, 3, -, /, +
+// [4 + 18 / ( 9 - 3 )] size: 9
+
 public static void formStacks(){
-  for (int i = 0; i < Tokens.size(); i++){
+  for (int i = Tokens.size()-1; i > 0; i--){
     if (isNumber(Tokens.get(i)) == true){
       Queue.add(Tokens.get(i).getString());
     } else {
+      while (Stack.get(i).getPriority() > Stack.get(i-1).getPriority()){
       Stack.add(Tokens.get(i).getString());
+      }
     }
   }
 }
