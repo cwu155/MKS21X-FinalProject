@@ -249,11 +249,13 @@ public class RealNumbers{
 //     System.out.println(multiply("11x","12x")); //132x^2
 //     System.out.println(multiply(a,"x")); //4x
 //     System.out.println(multiply("11x","12y")); //132xy
-      System.out.println(divide(a,b)); //2
-      System.out.println(divide("11x",b)); //5x
-      System.out.println(divide("11x","12x")); //0x^2
-      System.out.println(divide(a,"x")); //4x
-      System.out.println(divide("11x","12y")); //0xy
+//      System.out.println(divide(a,b)); //2
+//      System.out.println(divide("11x",b)); //5x
+//      System.out.println(divide("11x","12x")); //0x^2
+//      System.out.println(divide(a,"x")); //4x
+//      System.out.println(divide("11x","12y")); //0xy
+//        System.out.println(multiply("123x","2y"));
+//        System.out.println(divide("124x","2y"));
 //     System.out.println("9".GCF("15")); //3
 //     System.out.println("100".GCF("1")); //1
 //     System.out.println(sqrt("4")); //2
