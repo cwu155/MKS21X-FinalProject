@@ -149,9 +149,54 @@ public class RealNumbers{
      return Integer.parseInt(one) * Integer.parseInt(two) + "";
    }
   // //Given two substrings, return the quotient
-  // public int divide(String one, String two){
-  //   return Integer.parseInt(one) / Integer.parseInt(two);
-  // }
+   public static String divide(String one, String two){
+     if (two == "0"){
+       return "Divide by 0 error!";
+     }
+     //If string one has a variable...
+     if (containsVariable(one)){
+       //And string two has a variable...
+       if(containsVariable(two)){
+         //If the variable from the two strings are the same, divide the numerical
+         //values of the two strings with the variable added at the end
+         if (Variable(one).equals(Variable(two))){
+           String vari = Variable(one);
+           String temp1 = one.replace(vari,"");
+           String temp2 = two.replace(vari,"");
+           if (divide(temp1,temp2).equals("1")){
+             return vari + "^2";
+           }
+           else if (divide(temp1,temp2).equals("-1")){
+             return "-" + vari + "^2";
+           }
+           else{
+             return divide(temp1,temp2) + vari + "^2";
+           }
+         }
+         //If the varibles are not the same,
+         else{
+           String vari1 = Variable(one);
+           String vari2 = Variable(two);
+           String temp1 = one.replace(vari1,"");
+           String temp2 = two.replace(vari2,"");
+           return divide(temp1,temp2) + vari1 + vari2;
+         }
+       }
+       String vari = Variable(one);
+       String temp = one.replace(vari,"");
+       return divide(temp,two) + vari;
+     }
+     if (containsVariable(two) && !containsVariable(one)){
+       String vari = Variable(two);
+       String temp = two.replace(vari,"");
+       if (temp.length() == 0){
+         return one + two;
+       }
+       return divide(one,temp) + vari;
+     }
+     //Else, return the quotient of the two strings
+     return Integer.parseInt(one) / Integer.parseInt(two) + "";
+   }
   // //Given two substrings, return the GCF using Euclid's method
   // //Made public for testing purposes
   // public int GCF(String one, String two){
@@ -199,11 +244,16 @@ public class RealNumbers{
 //     System.out.println(subtract("11x","12x")); //-x
 //     System.out.println(subtract(a,"x")); //4-x
 //     System.out.println(subtract("11x","12y")); //11x-12y
-     System.out.println(multiply(a,b)); //8
-     System.out.println(multiply("11x",b)); //22x
-     System.out.println(multiply("11x","12x")); //132x^2
-     System.out.println(multiply(a,"x")); //4x
-     System.out.println(multiply("11x","12y")); //132xy
+//     System.out.println(multiply(a,b)); //8
+//     System.out.println(multiply("11x",b)); //22x
+//     System.out.println(multiply("11x","12x")); //132x^2
+//     System.out.println(multiply(a,"x")); //4x
+//     System.out.println(multiply("11x","12y")); //132xy
+      System.out.println(divide(a,b)); //2
+      System.out.println(divide("11x",b)); //5x
+      System.out.println(divide("11x","12x")); //0x^2
+      System.out.println(divide(a,"x")); //4x
+      System.out.println(divide("11x","12y")); //0xy
 //     System.out.println("9".GCF("15")); //3
 //     System.out.println("100".GCF("1")); //1
 //     System.out.println(sqrt("4")); //2
