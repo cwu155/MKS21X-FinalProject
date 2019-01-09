@@ -15,3 +15,6 @@
                The Shunting-Yard Algorithm is used to evaluate expressions in PEMDAS order.
 # January 7th
              - Modified add to be able to work on strings with a single variable
+             - Modified subtract to be able to work on strings with a single variable
+             - Modified multiply to be able to work on strings with a single variable
+             - Modified divide to be able to work on strings with a single variable
