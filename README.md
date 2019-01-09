@@ -18,3 +18,5 @@
              - Modified subtract to be able to work on strings with a single variable
              - Modified multiply to be able to work on strings with a single variable
              - Modified divide to be able to work on strings with a single variable
+# January 8th
+             - Created calculator class
