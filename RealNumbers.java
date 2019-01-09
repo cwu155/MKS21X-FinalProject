@@ -45,6 +45,9 @@ public class RealNumbers{
            else if (add(temp1,temp2).equals("-1")){
              return "-" + vari;
            }
+           else if (add(temp1,temp2).equals("0")){
+             return "0";
+           }
            else{
              return add(temp1,temp2) + vari;
            }
@@ -137,6 +140,9 @@ public class RealNumbers{
      if (containsVariable(two) && !containsVariable(one)){
        String vari = Variable(two);
        String temp = two.replace(vari,"");
+       if (temp.length() == 0){
+         return one + two;
+       }
        return multiply(one,temp) + vari;
      }
      //Else, return the product of the two strings
