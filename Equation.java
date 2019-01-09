@@ -12,6 +12,8 @@ public class Equation{
   public static String input = "4 + 18 / ( 9 - 3 )"; // Should take a user input in the future
   public static StringTokenizer st = new StringTokenizer(input); //Create StringTokenizer Object
   public static List<Token> Tokens = new ArrayList<Token>();   //Create ArrayList Object
+  public static List<Token> Stack = new ArrayList<Token>(); //Creates a stack of operations.
+  public static List<Token> Queue = new ArrayList<Token>(); //Creates a queue of the output.
 
   //Adds tokens from the user's input into ArrayList Tokens.
   public static void addTokens(){
@@ -46,13 +48,6 @@ public class Equation{
       return true;
   }
 
-  //Creates a stack of operations.
-  public static List<String> Stack = new ArrayList<String>();
-
-  //Creates a queue of the output.
-  public static List<String> Queue = new ArrayList<String>();
-
-
         // While there are tokens to be read:
         // Read a token
         //   If it's a number add it to queue
@@ -72,23 +67,43 @@ public class Equation{
 // [4 + 18 / ( 9 - 3 )] size: 9
 
 public static void formStacks(){
-  for (int i = Tokens.size()-1; i > 0; i--){
+  for (int i = 0; i < Tokens.size(); i++){
     if (isNumber(Tokens.get(i)) == true){
-      Queue.add(Tokens.get(i).getString());
-    } else {
-      while (Stack.get(i).getPriority() > Stack.get(i-1).getPriority()){
-      Stack.add(Tokens.get(i).getString());
+      Queue.add(Tokens.get(i));
+     } else {
+       //if (Stack.size() == 0) {Stack.add(Tokens.get(i));} else {
+       //if (Stack.get(stackIter).getPriority() < Tokens.get(i).getPriority()){
+         Stack.add(Tokens.get(i));
+         //stackIter += 1;
+       }
+    //  }
+    if (Tokens.get(i).getString() == "("){
+      Stack.add(Tokens.get(i));
+    }
+    // if (Tokens.get(i).getString() == ")"){
+    //   while (Stack.get(Stack.size()-1).getString() != "("){
+    //     Queue.remove(Queue.indexOf("("));
       }
+      }
+  // }
+  //}
+
+  public static void organizeStacks(){
+    for (Token element : Stack){
+      Queue.add(element);
     }
   }
-}
 
     public static void main(String[] args) { //Testing purposes
       addTokens();
       setPriority();
-      for(Token element : Tokens) {
-            System.out.println(element.getString() + ": Priority is " + element.getPriority());
+      formStacks();
+      for(Token element : Queue) {
+            System.out.println(element.getString());
         }
+      for(Token element : Stack){
+        System.out.println(element.getString());
+      }
 
       }
     }
