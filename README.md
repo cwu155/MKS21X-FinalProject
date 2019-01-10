@@ -20,3 +20,5 @@
              - Modified divide to be able to work on strings with a single variable
 # January 8th
              - Created calculator class
+#January 10th
+             -Implemented RealNumbers functions into Calculator class and added instructions to run the functions
