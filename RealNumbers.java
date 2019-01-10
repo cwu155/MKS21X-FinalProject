@@ -197,22 +197,38 @@ public class RealNumbers{
      return Integer.parseInt(one) / Integer.parseInt(two) + "";
    }
   // //Given two substrings, return the GCF using Euclid's method
-  // //Made public for testing purposes
-  // public int GCF(String one, String two){
-  //   //Variables for convenience
-  //   int num1 = Integer.parseInt(one);
-  //   int num2 = Integer.parseInt(two);
-  //   //If the second number is 0, then the GCF is the first number
-  //   if(num2 == 0){
-  //     return num1;
-  //   }
+   public static String GCF(String one, String two){
+     if (containsVariable(one)){
+       if (containsVariable(two)){
+         if (Variable(one).equals(Variable(two))){
+           String vari = Variable(one);
+           String temp1 = one.replace(vari,"");
+           String temp2 = two.replace(vari,"");
+           return GCF(temp1,temp2) + vari;
+         }
+      //If only one contains a variable or if the variables are different,
+      //return one
+         return "1";
+       }
+       return "1";
+     }
+     if (containsVariable(two) && !containsVariable(one)){
+       return "1";
+     }
+     //Variables for convenience
+     int num1 = Integer.parseInt(one);
+     int num2 = Integer.parseInt(two);
+ //   //If the second number is 0, then the GCF is the first number
+     if(num2 == 0){
+       return num1 + "";
+     }
   //   //If num2 is not 0, using Euclid's method, find the GCF of with
   //   //num2 in num1's place and num2 replaced by the remainder of num1 and num2
-  //   else{
-  //     int temp = num1 % num2;
-  //     return GCF(two,temp + "");
-  //   }
-  // }
+     else{
+       int temp = num1 % num2;
+       return GCF(two,temp + "");
+     }
+   }
   //
   // // Given a value, return its square root using Newton's Method
   // public double sqrt(String value){
@@ -255,7 +271,7 @@ public class RealNumbers{
 //      System.out.println(divide("11x","12y")); //0xy
 //        System.out.println(multiply("123x","2y"));
 //        System.out.println(divide("124x","2y"));
-//     System.out.println("9".GCF("15")); //3
+//     System.out.println(GCF("9","15")); //3
 //     System.out.println("100".GCF("1")); //1
 //     System.out.println(sqrt("4")); //2
    }
