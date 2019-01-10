@@ -2,9 +2,10 @@
 import java.util.*;
 
 public class RealNumbers{
-  String sub;
   public static String var;
   public static String numbers = "1234567890";
+  public RealNumbers(){
+  }
   //Returns if the the string contains a variable, and if so, sets var to the variable
   public static boolean containsVariable(String s){
     for (int i = 0; i < s.length(); i++){
@@ -26,8 +27,6 @@ public class RealNumbers{
     return "";
   }
   //Given two substrings, return the sum
-  // public RealNumbers(String s){
-  //   sub = s;
    public static String add(String one, String two){
      //If string one has a variable...
      if (containsVariable(one)){
