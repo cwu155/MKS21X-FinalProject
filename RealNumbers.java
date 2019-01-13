@@ -271,7 +271,8 @@ public class RealNumbers{
 //      System.out.println(divide("11x","12y")); //0xy
 //        System.out.println(multiply("123x","2y"));
 //        System.out.println(divide("124x","2y"));
-//     System.out.println(GCF("9","15")); //3
+
+     System.out.println(GCF("9x","15x")); //3
 //     System.out.println("100".GCF("1")); //1
 //     System.out.println(sqrt("4")); //2
    }

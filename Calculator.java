@@ -35,10 +35,6 @@ public class Calculator{
       if (args[1].equals("/")){
         System.out.println(IGNORE.divide(args[0],args[2]));
       }
-      else{
-        System.out.println("Did you really read the instructions?");
-        System.out.println(info);
-      }
     }
     else{
       System.out.println(info);
