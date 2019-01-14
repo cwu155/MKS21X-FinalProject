@@ -4,12 +4,11 @@ public class Equation{
   //Solving an expression or equation using PEMDAS - Order of Operations
   //Shunting-Yard Algorithm
 
-  public static String parenthesis = "()";
   public static String priority2 = "+-";
   public static String priority3 = "*/";
   public static String priority4 = "^";
-  public static Token top;
-  public static Integer result;
+  //public static Token intermedToken;
+  public static Integer newNumber;
 
   //Creates an array of tokens.
   public static String infix; // Should take a user input in the future
@@ -17,6 +16,7 @@ public class Equation{
   public static List<Token> Tokens = new ArrayList<Token>();   //Create ArrayList Object
   public static List<Token> Stack = new ArrayList<Token>(); //Creates a stack of operations.
   public static List<Token> Queue = new ArrayList<Token>(); //Creates a queue of the output.
+  public static Stack<Integer> stack = new Stack<Integer>();
 
   //Adds tokens from the user's input into ArrayList Tokens.
   public static void addTokens(){
@@ -24,7 +24,6 @@ public class Equation{
       Token newToken = new Token(st.nextToken(), 1);
       Tokens.add(newToken);
       }
-      //for (Token element : Tokens){System.out.println(element.getString());} Debug
     }
 
   //Sets the priority of each token. This code should be more efficient.
@@ -57,14 +56,14 @@ public class Equation{
     return Stack.get(Stack.size()-1);
   }
 
-  //Basically a pop function? Helper function!
-  public static void pop(){
+  //Helper function!
+  public static void addTop(){
     Token topToken = Stack.get(Stack.size()-1);
     Queue.add(topToken);
     Stack.remove(topToken);
   }
 
-  public static void evaluate(String expression){
+  public static void infixToPrefix(String expression){
     infix = expression;
     st = new StringTokenizer(infix);
     addTokens();
@@ -75,7 +74,7 @@ public class Equation{
       } else if (element.getString().equals("(")){Stack.add(element);
       } else if (element.getString().equals(")")){
         while (!(peek().getString().equals("("))){
-          pop();
+          addTop();
         } if (peek().getString().equals("(")){Stack.remove(peek());}
       } else {
         if (Stack.size() == 0){Stack.add(element);}
@@ -98,24 +97,32 @@ public class Equation{
     }
   }
 
+  public static Integer evaluate(String expression){
+    infixToPrefix(expression);
+
+    for (Token element : Queue){
+                if (element.getString().equals("+")){
+                    stack.push(stack.pop() + stack.pop());
+                  } else if (element.getString().equals("-")) {
+                    stack.push(-stack.pop() + stack.pop());
+                  } else if (element.getString().equals("*")) {
+                    stack.push(stack.pop() * stack.pop());
+                  } else if (element.getString().equals("/")) {
+                    Integer divisor = stack.pop();
+                    stack.push(stack.pop() / divisor);
+                } else {
+                    stack.push(Integer.valueOf(element.getString()));
+                  }
+                }
+        return stack.pop();
+    }
+
+
     public static void main(String[] args) { //Testing purposes
-      evaluate("1 + 2 * 3 - 4");
-      //Should return 1 2 3 * + 4 -
-      //Should return 4 5 5 2 + * +.
 
-
-      System.out.println("Current Queue");
-      for(Token element : Queue) {
-            System.out.println(element.getString());
-        }
-
-      System.out.println("Current Stack");
-      for(Token element : Stack){
-         System.out.println(element.getString());
-       }
-
-      //Token addToken = new Token("+", 2);
-      //System.out.println(isNumber(addToken));
+      //infixToPrefix("1 + 3");
+      //for (Token element : Queue){System.out.println(element.getString());}
+      System.out.println(evaluate("4 + 5 * ( 5 + 2 )"));
 
       }
     }
