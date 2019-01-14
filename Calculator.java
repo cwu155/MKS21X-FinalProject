@@ -16,6 +16,10 @@ public class Calculator{
     //
     // Integer result = Equation.evaluate(input);
     // System.out.println(result);
+    if (args.length == 1){
+      System.out.println(Equation.evaluate(args[0]));
+      return;
+      }
 
     if (args.length > 0){
       if (args[0].equals("add")){

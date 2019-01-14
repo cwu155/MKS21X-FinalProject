@@ -122,7 +122,7 @@ public class Equation{
 
       //infixToPrefix("1 + 3");
       //for (Token element : Queue){System.out.println(element.getString());}
-      System.out.println(evaluate("4 + 5 * ( 5 + 2 )"));
+      //System.out.println(evaluate("4 + 5 * ( 5 + 2 )"));
 
       }
     }
