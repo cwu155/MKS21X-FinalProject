@@ -3,7 +3,6 @@ import java.util.*;
 public class Equation{
   //Solving an expression or equation using PEMDAS - Order of Operations
   //Shunting-Yard Algorithm
-
   public static String priority2 = "+-";
   public static String priority3 = "*/";
   public static String priority4 = "^";
@@ -18,6 +17,7 @@ public class Equation{
   public static List<Token> Queue = new ArrayList<Token>(); //Creates a queue of the output.
   public static Stack<Integer> stack = new Stack<Integer>();
 
+  public Equation(){}
   //Adds tokens from the user's input into ArrayList Tokens.
   public static void addTokens(){
     while(st.hasMoreTokens()) {
