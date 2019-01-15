@@ -6,8 +6,8 @@ public class Calculator{
     RealNumbers IGNORE;
     IGNORE = new RealNumbers();
 
-    Equation userExpression;
-    userExpression = new Equation();
+    Expression userExpression;
+    userExpression = new Expression();
 
     String directions = "To use this program, please enter the function that you want us to solve \nThe args entered should have a space in between (ie 2x + 3y) or in the format of add 2x 3y \nThis program can currently add, subtract, mulitply, divide, and find the GCF two strings \nIt can also evaluate an expression! (Without variables.) \nThe commands should be written in ALL LOWERCASE!! \nPlease do not simply enter x or y : Enter in the form 1x + 1y";
     // Scanner scan = new Scanner(System.in);
@@ -17,7 +17,7 @@ public class Calculator{
     // Integer result = Equation.evaluate(input);
     // System.out.println(result);
     if (args.length == 1){
-      System.out.println(Equation.evaluate(args[0]));
+      System.out.println(Expression.evaluate(args[0]));
       return;
       }
 
