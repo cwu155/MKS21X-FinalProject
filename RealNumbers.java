@@ -129,6 +129,12 @@ public class RealNumbers{
            String vari2 = Variable(two);
            String temp1 = one.replace(vari1,"");
            String temp2 = two.replace(vari2,"");
+           if (temp1.length() == 0){
+             if(temp2.length() == 0){
+               return vari1 + vari2;
+             }
+             return two;
+           }
            return multiply(temp1,temp2) + vari1 + vari2;
          }
        }
@@ -162,15 +168,13 @@ public class RealNumbers{
            String vari = Variable(one);
            String temp1 = one.replace(vari,"");
            String temp2 = two.replace(vari,"");
-           if (divide(temp1,temp2).equals("1")){
-             return vari + "^2";
+           if(temp1.length() == 0){
+             if (temp2.length() == 0){
+               return "1";
+             }
+             return "1/" + temp2;
            }
-           else if (divide(temp1,temp2).equals("-1")){
-             return "-" + vari + "^2";
-           }
-           else{
-             return divide(temp1,temp2) + vari + "^2";
-           }
+           return divide(temp1,temp2);
          }
          //If the varibles are not the same,
          else{
@@ -178,7 +182,7 @@ public class RealNumbers{
            String vari2 = Variable(two);
            String temp1 = one.replace(vari1,"");
            String temp2 = two.replace(vari2,"");
-           return divide(temp1,temp2) + vari1 + vari2;
+           return divide(temp1,temp2) + vari1 + "/" + vari2;
          }
        }
        String vari = Variable(one);
@@ -189,9 +193,9 @@ public class RealNumbers{
        String vari = Variable(two);
        String temp = two.replace(vari,"");
        if (temp.length() == 0){
-         return one + two;
+         return one + "/" + vari;
        }
-       return divide(one,temp) + vari;
+       return divide(one,temp) + "1/" + vari;
      }
      //Else, return the quotient of the two strings
      return Integer.parseInt(one) / Integer.parseInt(two) + "";
