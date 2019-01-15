@@ -26,3 +26,5 @@
 # January 13th 
              -Finished the Shunting-Yard Algorithm to evaluate expressions.
              -Updated Calculator class to take user input.
+# January 14th
+             -Fixed bugs in the mulitply and divide functions with mulitple variables
