@@ -26,11 +26,46 @@ public class Equation{
 //    System.out.println("Final Eval " + eval);
 //    System.out.println("Final answer " + answer);
 }
-  public static String reverse(String s){
-    String ans = "";
-    return ans;
+
+  public static String SolveOneSide(String s){
+    seperate(s);
+    String temp = eval.replaceAll(" ","");
+    String first = "";
+    String second = "";
+    Boolean func = false;
+    String function = "";
+    for (int i = 0; i < temp.length(); i ++){
+      if ("+-*/".contains(temp.substring(i,i+1))){
+//        System.out.println("Func is switched from false to true. All changes should be in second half!");
+        function += temp.substring(i,i+1);
+        func = true;
+        i ++;
+      }
+      if (!func){
+        first += temp.substring(i,i+1);
+//        System.out.println("First half -" + first);
+      }
+      else{
+        second += temp.substring(i,i+1);
+//        System.out.println("Second half -" + second);
+      }
+    }
+    if (function.equals("+")){
+      return RealNumbers.add(first,second);
+    }
+    else if (function.equals("-")){
+      return RealNumbers.subtract(first,second);
+    }
+    else if (function.equals("*")){
+      return RealNumbers.multiply(first,second);
+    }
+    else if (function.equals("/")){
+      return RealNumbers.divide(first,second);
+    }
+    return temp;
   }
   public static void main(String[] args){
-    seperate("4x + 1 = 5");
+    //seperate("4x + 1 = 5");
+    System.out.println(SolveOneSide("4x + 4x = 5"));
   }
 }
