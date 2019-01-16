@@ -6,6 +6,7 @@ public class Expression{
   public static String priority2 = "+-";
   public static String priority3 = "*/";
   public static String priority4 = "^";
+  public static String sin = "sin";
   public static Integer newNumber;
 
   //Creates an array of tokens.
@@ -14,9 +15,10 @@ public class Expression{
   public static List<Token> Tokens = new ArrayList<Token>();   //Create ArrayList Object
   public static List<Token> Stack = new ArrayList<Token>(); //Creates a stack of operations.
   public static List<Token> Queue = new ArrayList<Token>(); //Creates a queue of the output.
-  public static Stack<Integer> stack = new Stack<Integer>();
+  public static Stack<Double> stack = new Stack<Double>();
 
   public Expression(){}
+
   //Adds tokens from the user's input into ArrayList Tokens.
   public static void addTokens(){
     while(st.hasMoreTokens()) {
@@ -62,7 +64,8 @@ public class Expression{
     Stack.remove(topToken);
   }
 
-  public static void infixToPrefix(String expression){
+  //Converts infix to postfix notation.
+  public static void infixToPostfix(String expression){
     infix = expression;
     st = new StringTokenizer(infix);
     addTokens();
@@ -75,29 +78,30 @@ public class Expression{
         while (!(peek().getString().equals("("))){
           addTop();
         } if (peek().getString().equals("(")){Stack.remove(peek());}
-      } else {
-        if (Stack.size() == 0){Stack.add(element);}
-        else if (element.getPriority() >= peek().getPriority()){
-          Stack.add(element);
         } else {
-          for (int i = Stack.size()-1; i >= 0; i--){
-            Queue.add(Stack.get(i));
-            Stack.remove(Stack.get(i));
+            if (Stack.size() == 0){Stack.add(element);}
+            else if (element.getPriority() >= peek().getPriority()){
+              Stack.add(element);
+            } else {
+              for (int i = Stack.size()-1; i >= 0; i--){
+                Queue.add(Stack.get(i));
+                Stack.remove(Stack.get(i));
+              }
+                Stack.add(element);
             }
-          Stack.add(element);
+          }
+        }
+      if (Stack.size() != 0){
+        for (int i = Stack.size()-1; i >= 0; i--){
+          Queue.add(Stack.get(i));
+          Stack.remove(Stack.get(i));
         }
       }
     }
-    if (Stack.size() != 0){
-      for (int i = Stack.size()-1; i >= 0; i--){
-        Queue.add(Stack.get(i));
-        Stack.remove(Stack.get(i));
-      }
-    }
-  }
 
-  public static Integer evaluate(String expression){
-    infixToPrefix(expression);
+  //Evaluates postfix notation.
+  public static Double evaluate(String expression){
+    infixToPostfix(expression);
 
     for (Token element : Queue){
                 if (element.getString().equals("+")){
@@ -107,21 +111,25 @@ public class Expression{
                   } else if (element.getString().equals("*")) {
                     stack.push(stack.pop() * stack.pop());
                   } else if (element.getString().equals("/")) {
-                    Integer divisor = stack.pop();
+                    Double divisor = stack.pop();
                     stack.push(stack.pop() / divisor);
-                } else {
-                    stack.push(Integer.valueOf(element.getString()));
+                  } else if (element.getString().equals("sin")){
+                    stack.push(Math.sin(Math.toRadians(stack.pop())));
+                  }
+                    else {
+                    stack.push(Double.valueOf(element.getString()));
                   }
                 }
+
         return stack.pop();
     }
 
 
     public static void main(String[] args) { //Testing purposes
-
-      System.out.println(evaluate("4x"));
-      //for (Token element : Queue){System.out.println(element.getString());}
-      //System.out.println(evaluate("4 + 5 * ( 5 + 2 )"));
+      //infixToPostfix("sin 30");
+      //for (Token element : Tokens){System.out.println(element.getString());}
+      //System.out.println(evaluate("sin ( 0 )"));
+      System.out.println(evaluate("1.8 + 3.4 * 3.0"));
 
       }
     }
