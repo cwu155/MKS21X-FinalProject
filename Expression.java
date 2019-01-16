@@ -6,7 +6,7 @@ public class Expression{
   public static String priority2 = "+-";
   public static String priority3 = "*/";
   public static String priority4 = "^";
-  public static String sin = "sin";
+  public static String functions = "sincostan";
   public static Integer newNumber;
 
   //Creates an array of tokens.
@@ -50,6 +50,11 @@ public class Expression{
           return false;
         }
       return true;
+  }
+
+  //Pretty unnecessary
+  public static boolean isFunction(Token inputToken){
+    return (functions.contains(inputToken.getString()));
   }
 
   //Returns the element at the top of the stack.
@@ -115,6 +120,10 @@ public class Expression{
                     stack.push(stack.pop() / divisor);
                   } else if (element.getString().equals("sin")){
                     stack.push(Math.sin(Math.toRadians(stack.pop())));
+                  } else if (element.getString().equals("cos")){
+                    stack.push(Math.cos(Math.toRadians(stack.pop())));
+                  } else if (element.getString().equals("tan")){
+                    stack.push(Math.tan(Math.toRadians(stack.pop())));
                   }
                     else {
                     stack.push(Double.valueOf(element.getString()));
@@ -129,7 +138,7 @@ public class Expression{
       //infixToPostfix("sin 30");
       //for (Token element : Tokens){System.out.println(element.getString());}
       //System.out.println(evaluate("sin ( 0 )"));
-      System.out.println(evaluate("1.8 + 3.4 * 3.0"));
+      System.out.println(evaluate("tan 90"));
 
       }
     }
