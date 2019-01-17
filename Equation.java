@@ -27,9 +27,14 @@ public class Equation{
 //    System.out.println("Final answer " + answer);
 }
 
-  public static String SolveOneSide(String s){
-    seperate(s);
-    String temp = eval.replaceAll(" ","");
+  public static String SimplifySide(String s,String side){
+    String temp;
+    if (side.equals("ans")){
+      temp = answer.replaceAll(" ","");
+    }
+    else{
+      temp = eval.replaceAll(" ","");
+    }
     String first = "";
     String second = "";
     Boolean func = false;
@@ -64,8 +69,45 @@ public class Equation{
     }
     return temp;
   }
+  public static String Simplify(String s){
+    seperate(s);
+    String tempeval = eval.replaceAll(" ","");
+    String tempans = answer.replaceAll(" ","");
+    String side1 = SimplifySide(tempeval,"eval");
+    String side2 = SimplifySide(tempans,"ans");
+    String num = "";
+    String func = "";
+    String newans = "";
+    String side = "";
+    for (int i = 0;i < side1.length();i ++){
+      if ("+-*/".contains(side1.substring(i,i+1))){
+        func = side1.substring(i,i+1);
+        num = side1.substring(i+1,i+2);
+        i = s.length();
+      }
+    }
+    if (func == "+"){
+      side = side1.replace("+"+num,"");
+      newans = RealNumbers.subtract(side2,num);
+    }
+    if (func == "-"){
+      side1.replace("-"+num,"");
+      newans = RealNumbers.add(side2,num);
+    }
+    if (func == "/"){
+      side1.replace("/"+num,"");
+      newans = RealNumbers.multiply(side2,num);
+    }
+    if (func == "*"){
+      side1.replace("*"+num,"");
+      newans = RealNumbers.divide(side2,num);
+    }
+    if (newans.equals("")){
+      newans = "0";
+    }
+    return side1 + "=" + newans;
+    }
   public static void main(String[] args){
-    //seperate("4x + 1 = 5");
-    System.out.println(SolveOneSide("4x + 4x = 5"));
+    System.out.println(Simplify("4x+2=2"));
   }
 }
