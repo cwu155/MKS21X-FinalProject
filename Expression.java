@@ -128,6 +128,10 @@ public class Expression{
                   } else if (element.getString().equals("/")) {
                     Double divisor = stack.pop();
                     stack.push(stack.pop() / divisor);
+                  } else if (element.getString().equals("^")) {
+                    Double first = stack.pop();
+                    Double second = stack.pop();
+                    stack.push(Math.pow(second, first));
                   } else if (element.getString().equals("sin")){
                     stack.push(Math.sin(Math.toRadians(stack.pop())));
                   } else if (element.getString().equals("cos")){
@@ -145,7 +149,7 @@ public class Expression{
 
     public static void main(String[] args) { //Testing purposes
       //for (Token element : Tokens){System.out.println(element.getString());}
-      System.out.println(evaluate("4+5* (5+2)"));
+      System.out.println(evaluate("5^2"));
 
       }
     }

@@ -65,12 +65,7 @@ public class Equation{
     return temp;
   }
   public static void main(String[] args){
-<<<<<<< HEAD
-    seperate("4x + 1 = 5");
-    System.out.println(answer);
-=======
     //seperate("4x + 1 = 5");
     System.out.println(SolveOneSide("4x + 4x = 5"));
->>>>>>> c29f73856e572dbfa3df6e97380c79ccfa915b55
   }
 }
