@@ -19,6 +19,15 @@ public class Expression{
 
   public Expression(){}
 
+  //Checks to see if input has spaces. If it does not, insert a space.
+   public static String formatInput(String input){
+     String result = "";
+       for (int i = 0; i < input.length(); i++){
+         result += input.substring(i, i+1) + " ";
+       }
+       return result;
+   }
+
   //Adds tokens from the user's input into ArrayList Tokens.
   public static void addTokens(){
     while(st.hasMoreTokens()) {
@@ -52,7 +61,7 @@ public class Expression{
       return true;
   }
 
-  //Pretty unnecessary
+  //Pretty unnecessary.
   public static boolean isFunction(Token inputToken){
     return (functions.contains(inputToken.getString()));
   }
@@ -71,13 +80,14 @@ public class Expression{
 
   //Converts infix to postfix notation.
   public static void infixToPostfix(String expression){
-    infix = expression;
+    infix = formatInput(expression);
     st = new StringTokenizer(infix);
     addTokens();
     setPriority();
 
     for (Token element : Tokens){
       if (isNumber(element)){Queue.add(element);
+      } else if (isFunction(element)){Stack.add(element);
       } else if (element.getString().equals("(")){Stack.add(element);
       } else if (element.getString().equals(")")){
         while (!(peek().getString().equals("("))){
@@ -129,16 +139,13 @@ public class Expression{
                     stack.push(Double.valueOf(element.getString()));
                   }
                 }
-
         return stack.pop();
     }
 
 
     public static void main(String[] args) { //Testing purposes
-      //infixToPostfix("sin 30");
       //for (Token element : Tokens){System.out.println(element.getString());}
-      //System.out.println(evaluate("sin ( 0 )"));
-      System.out.println(evaluate("tan 90"));
+      System.out.println(evaluate("4+5* (5+2)"));
 
       }
     }
