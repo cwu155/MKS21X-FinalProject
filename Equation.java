@@ -29,30 +29,49 @@ public class Equation{
 
   public static String SimplifySide(String s,String side){
     String temp;
-    if (side.equals("ans")){
-      temp = answer.replaceAll(" ","");
-    }
-    else{
-      temp = eval.replaceAll(" ","");
-    }
     String first = "";
     String second = "";
     Boolean func = false;
     String function = "";
-    for (int i = 0; i < temp.length(); i ++){
-      if ("+-*/".contains(temp.substring(i,i+1))){
-//        System.out.println("Func is switched from false to true. All changes should be in second half!");
-        function += temp.substring(i,i+1);
-        func = true;
-        i ++;
+    if (side.equals("ans")){
+      temp = answer.replaceAll(" ","");
+      for (int i = 0; i < temp.length(); i ++){
+        if ("+-*/".contains(temp.substring(i,i+1))){
+  //        System.out.println("Func is switched from false to true. All changes should be in second half!");
+          function += temp.substring(i,i+1);
+          func = true;
+          i ++;
+        }
+        if (!func){
+          first += temp.substring(i,i+1);
+  //        System.out.println("First half -" + first);
+        }
+        else{
+          second += temp.substring(i,i+1);
+  //        System.out.println("Second half -" + second);
+        }
       }
-      if (!func){
-        first += temp.substring(i,i+1);
-//        System.out.println("First half -" + first);
-      }
-      else{
-        second += temp.substring(i,i+1);
-//        System.out.println("Second half -" + second);
+    }
+    else{
+      temp = eval.replaceAll(" ","");
+      for (int i = 0; i < temp.length(); i ++){
+        if ("+-*/".contains(temp.substring(i,i+1))){
+          if (i == 0){
+            i++;
+          }
+  //        System.out.println("Func is switched from false to true. All changes should be in second half!");
+          function += temp.substring(i,i+1);
+          func = true;
+          i ++;
+        }
+        if (!func){
+          first += temp.substring(i,i+1);
+  //        System.out.println("First half -" + first);
+        }
+        else{
+          second += temp.substring(i,i+1);
+  //        System.out.println("Second half -" + second);
+        }
       }
     }
     if (function.equals("+")){
@@ -69,7 +88,7 @@ public class Equation{
     }
     return temp;
   }
-  public static String Simplify(String s){
+  public static String SimplifyFirst(String s){
     seperate(s);
     String tempeval = eval.replaceAll(" ","");
     String tempans = answer.replaceAll(" ","");
@@ -78,36 +97,46 @@ public class Equation{
     String num = "";
     String func = "";
     String newans = "";
-    String side = "";
+    int Index = 0;
     for (int i = 0;i < side1.length();i ++){
       if ("+-*/".contains(side1.substring(i,i+1))){
         func = side1.substring(i,i+1);
-        num = side1.substring(i+1,i+2);
+        Index = i + 1;
         i = s.length();
       }
     }
-    if (func == "+"){
-      side = side1.replace("+"+num,"");
+    for(int i = Index;i < side1.length();i++){
+      num += side1.substring(i,i+1);
+    }
+    if (func.equals("+")){
       newans = RealNumbers.subtract(side2,num);
     }
-    if (func == "-"){
-      side1.replace("-"+num,"");
+    if (func.equals("-")){
       newans = RealNumbers.add(side2,num);
     }
-    if (func == "/"){
-      side1.replace("/"+num,"");
-      newans = RealNumbers.multiply(side2,num);
-    }
-    if (func == "*"){
-      side1.replace("*"+num,"");
+    if (func.equals("*")){
       newans = RealNumbers.divide(side2,num);
+    }
+    if (func.equals("/")){
+      newans = RealNumbers.multiply(side2,num);
     }
     if (newans.equals("")){
       newans = "0";
     }
-    return side1 + "=" + newans;
+    return side1.replace(func + num , "") + "=" + newans;
     }
+  public static String Simplifyvar(String s){
+    String num = "";
+    for (int i = 0; i < s.length(); i ++){
+      if ("1234567890".contains(s.substring(i, i + 1))){
+        num += s.substring(i,i+1);
+      }
+    }
+    return num;
+  }
   public static void main(String[] args){
-    System.out.println(Simplify("4x+2=2"));
+    String s = "3x+9871=984";
+    //seperate(s);
+    System.out.println(SimplifyFirst(s));
   }
 }
