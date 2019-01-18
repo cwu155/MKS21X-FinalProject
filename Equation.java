@@ -1,6 +1,6 @@
 //Solving equations goes here!
 //Ex.) 4x + 1 = 5
-//Output should be something ike x = 1
+//Output should be something like x = 1
 import java.util.*;
 public class Equation{
   public static String answer = "";
