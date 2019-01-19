@@ -21,10 +21,21 @@
 # January 8th
              - Created calculator class
 # January 10th
-             -Implemented RealNumbers functions into Calculator class and added instructions to run the functions
-             
-# January 13th 
-             -Finished the Shunting-Yard Algorithm to evaluate expressions.
-             -Updated Calculator class to take user input.
+             - Implemented RealNumbers functions into Calculator class and added instructions to run the functions
+
+# January 13th
+             - Finished the Shunting-Yard Algorithm to evaluate expressions.
+             - Updated Calculator class to take user input.
 # January 14th
-             -Fixed bugs in the mulitply and divide functions with mulitple variables
+             - Fixed bugs in the mulitply and divide functions with mulitple variables
+# January 15th
+             - Wrote a seperate function that seperates a given equation into two components
+             - Created a reverse function
+# January 16th
+             - Deleted reverse function
+             - Wrote a function to evaluate one side of the function
+# January 17th
+             - Started writing a function to reduce both sides of a function down to its variables
+# January 18th
+             - Fixed an error with SimplifyFirst
+             - Wrote SimplifyVar, which finishes the last step in solving a linear equation

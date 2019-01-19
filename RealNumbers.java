@@ -155,6 +155,10 @@ public class RealNumbers{
    }
   // //Given two substrings, return the quotient
    public static String divide(String one, String two){
+     String sign = "";
+     if ((Integer.parseInt(one) < 0 && Integer.parseInt(two) > 0) || (Integer.parseInt(one) > 0 && Integer.parseInt(two) < 0)){
+       sign = "-";
+     }
      if (two == "0"){
        return "Divide by 0 error!";
      }
@@ -198,7 +202,7 @@ public class RealNumbers{
        return divide(one,temp) + "1/" + vari;
      }
      //Else, return the quotient of the two strings
-     return Integer.parseInt(one) / Integer.parseInt(two) + "";
+     return sign + Integer.parseInt(one) / Integer.parseInt(two);
    }
   // //Given two substrings, return the GCF using Euclid's method
    public static String GCF(String one, String two){

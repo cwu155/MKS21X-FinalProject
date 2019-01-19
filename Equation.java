@@ -3,10 +3,12 @@
 //Output should be something like x = 1
 import java.util.*;
 public class Equation{
+  public static String equation = "";
   public static String answer = "";
   public static String eval = "";
   public static void seperate(String s){
     s = s.trim();
+    equation = s.trim();
     Boolean equal = false;
     for (int i = 0; i < s.length(); i ++){
       if (s.substring(i,i + 1).equals("=")){
@@ -123,20 +125,34 @@ public class Equation{
     if (newans.equals("")){
       newans = "0";
     }
+    answer = newans;
+    eval = side1.replace(func + num, "");
     return side1.replace(func + num , "") + "=" + newans;
     }
-  public static String Simplifyvar(String s){
+  public static String SimplifyVar(String s){
     String num = "";
-    for (int i = 0; i < s.length(); i ++){
-      if ("1234567890".contains(s.substring(i, i + 1))){
-        num += s.substring(i,i+1);
+    String sign = "";
+    String temp = "";
+    for (int i = 0; i < eval.length(); i ++){
+      if ("1234567890".contains(eval.substring(i, i + 1))){
+        num += eval.substring(i,i+1);
       }
     }
-    return num;
+    if (answer.substring(0,1).equals("-")){
+      sign = "-";
+      temp = answer.replace("-","");
+    }
+    eval = eval.replace(num,"");
+    answer = sign + RealNumbers.divide(temp,num);
+    equation = eval + "=" + answer;
+    return equation;
   }
   public static void main(String[] args){
     String s = "3x+9871=984";
-    //seperate(s);
     System.out.println(SimplifyFirst(s));
+    //System.out.println(answer);
+    //System.out.println(eval);
+    equation = answer + "=" + eval;
+    System.out.println(SimplifyVar(s));
   }
 }
