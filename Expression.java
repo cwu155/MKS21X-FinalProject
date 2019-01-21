@@ -6,7 +6,7 @@ public class Expression{
   public static String priority2 = "+-";
   public static String priority3 = "*/";
   public static String priority4 = "^";
-  public static String functions = "sincostan";
+  public static String functions = "sin";
   public static Integer newNumber;
 
   //Creates an array of tokens.
@@ -22,10 +22,12 @@ public class Expression{
   //Checks to see if input has spaces. If it does not, insert a space.
    public static String formatInput(String input){
      String result = "";
+     if (!(input.contains(functions))){
        for (int i = 0; i < input.length(); i++){
          result += input.substring(i, i+1) + " ";
-       }
-       return result;
+        }
+      } else {return input;}
+        return result;
    }
 
   //Adds tokens from the user's input into ArrayList Tokens.
@@ -149,7 +151,8 @@ public class Expression{
 
     public static void main(String[] args) { //Testing purposes
       //for (Token element : Tokens){System.out.println(element.getString());}
-      System.out.println(evaluate("5^2"));
+      //System.out.println(formatInput("sin 30"));
+      System.out.println(evaluate("( sin 30 ) + 1"));
 
       }
     }
