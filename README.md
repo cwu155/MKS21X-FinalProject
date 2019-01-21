@@ -1,4 +1,13 @@
 # MKS21X-FinalProject
+# Instructions
+             - To use this program, please enter the function that you want us to solve
+             - The args entered should have a space in between (ie 2x + 3y) or in the format of add 2x 3y
+             - This program can currently add, subtract, mulitply, divide, and find the GCF two strings
+             - It can also evaluate an expression! (Without variables.)
+             - The commands should be written in ALL LOWERCASE!!
+             - Please do not simply enter x or y : Enter in the form 1x + 1y
+             - You can also solve for x in linear equations (ie 3x + 9871 = 984) To use this this feature, please type in equation (all lowercase) and enter the equation between quotations (see example above)";
+
 # January 3rd
              - Created new file
              - Created the GCF function using Euclid's method and recursion
@@ -39,3 +48,6 @@
 # January 18th
              - Fixed an error with SimplifyFirst
              - Wrote SimplifyVar, which finishes the last step in solving a linear equation
+# January 20th
+             - Added equation function to calculator
+             - Updated instructions
