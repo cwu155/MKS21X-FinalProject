@@ -6,7 +6,10 @@ public class Equation{
   public static String equation = "";
   public static String answer = "";
   public static String eval = "";
-  public static void seperate(String s){
+
+  public Equation(){}
+
+  public static void separate(String s){
     s = s.trim();
     equation = s.trim();
     Boolean equal = false;
@@ -91,7 +94,7 @@ public class Equation{
     return temp;
   }
   public static String SimplifyFirst(String s){
-    seperate(s);
+    separate(s);
     String tempeval = eval.replaceAll(" ","");
     String tempans = answer.replaceAll(" ","");
     String side1 = SimplifySide(tempeval,"eval");
@@ -147,12 +150,20 @@ public class Equation{
     equation = eval + "=" + answer;
     return equation;
   }
+
+  public static String simplify (String s){
+    s = SimplifyFirst(s);
+    s = SimplifyVar(s);
+    return s;
+  }
+
   public static void main(String[] args){
     String s = "3x+9871=984";
-    System.out.println(SimplifyFirst(s));
+    //System.out.println(SimplifyFirst(s));
     //System.out.println(answer);
     //System.out.println(eval);
-    equation = answer + "=" + eval;
-    System.out.println(SimplifyVar(s));
+    //equation = answer + "=" + eval;
+    //System.out.println(SimplifyVar(s));
+    System.out.println(simplify(s));
   }
 }

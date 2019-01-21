@@ -3,6 +3,7 @@ import java.util.*;
 public class Expression{
   //Solving an expression or equation using PEMDAS - Order of Operations
   //Shunting-Yard Algorithm
+
   public static String priority2 = "+-";
   public static String priority3 = "*/";
   public static String priority4 = "^";
