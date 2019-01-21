@@ -38,6 +38,9 @@ public class Calculator{
             case 3:
               control = false;
               break;
+
+            default:
+            System.out.println("**Type 1, 2, or 3 for the program to work!**");
             }
           }
         }
