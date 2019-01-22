@@ -4,6 +4,7 @@ import java.util.*;
 public class RealNumbers{
   public static String var;
   public static String numbers = "1234567890";
+  public static String one,two;
   public RealNumbers(){
   }
   //Returns if the the string contains a variable, and if so, sets var to the variable
@@ -242,15 +243,24 @@ public class RealNumbers{
    }
   //
   // // Given a value, return its square root using Newton's Method
-  // public double sqrt(String value){
-  //   double result = 1;
-  //   double a = (Double.parseDouble(value));
-  //     for (int i = 0; i < Double.parseDouble(value); i++){
-  //       result = 0.5 * (result + a / result);
-  //     }
-  //     return (int)result;
-  //   }
+  public double sqrt(String value){
+    double result = 1;
+    double a = (Double.parseDouble(value));
+      for (int i = 0; i < Double.parseDouble(value); i++){
+        result = 0.5 * (result + a / result);
+      }
+      return (int)result;
+    }
 
+    public static void split(String input){
+      String[] tokens = input.split(" ");
+      for (int i = 0; i < tokens.length; i++){if ((tokens[i].contains("x") ||
+                                       tokens[i].contains("y") && (i != tokens.length-1))) {
+          one = tokens[i];
+          }
+          if (i == tokens.length-1){two = tokens[i];}
+        }
+    }
   //Testing methods
   public static void main(String[] args) {
 //    System.out.println("Testing RealNumbers");
@@ -260,27 +270,7 @@ public class RealNumbers{
 
      String a = "4";
      String b = "2";
-//     System.out.println(add(a,b)); //6
-//     System.out.println(add("11x",b)); //11x+2
-//     System.out.println(add("11x","12x")); //23x
-//     System.out.println(add(a,"x"));//4+x
-//     System.out.println(add("11x","12y"));//11x+12y
-//     System.out.println(subtract(a,b)); //2
-//     System.out.println(subtract("11x",b)); //11x -2
-//     System.out.println(subtract("11x","12x")); //-x
-//     System.out.println(subtract(a,"x")); //4-x
-//     System.out.println(subtract("11x","12y")); //11x-12y
-//     System.out.println(multiply(a,b)); //8
-//     System.out.println(multiply("11x",b)); //22x
-//     System.out.println(multiply("11x","12x")); //132x^2
-//     System.out.println(multiply(a,"x")); //4x
-//     System.out.println(multiply("11x","12y")); //132xy
-//      System.out.println(divide(a,b)); //2
-//      System.out.println(divide("11x",b)); //5x
-//      System.out.println(divide("11x","12x")); //0x^2
-//      System.out.println(divide(a,"x")); //4x
-//      System.out.println(divide("11x","12y")); //0xy
-//        System.out.println(multiply("123x","2y"));
+
         System.out.println(divide("0","2y"));
 
 //     System.out.println(GCF("9x","15x")); //3

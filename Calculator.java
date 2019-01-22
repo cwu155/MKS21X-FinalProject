@@ -14,7 +14,10 @@ public class Calculator{
           System.out.println("\nMAIN MENU:");
           System.out.println("[1] EXPRESSION");
           System.out.println("[2] EQUATION");
-          System.out.println("[3] QUIT\n");
+          System.out.println("[3] GRAPH (Y=X)");
+          System.out.println(("[4] BASIC CALCULATIONS"));
+          System.out.println("[5] QUIT\n");
+
 
           Scanner sc = new Scanner(System.in);
           System.out.print("Selection: ");
@@ -25,22 +28,29 @@ public class Calculator{
               Scanner sc1 = new Scanner(System.in);
               System.out.println("\nEnter an expression to evaluate:");
               String userExpression = sc1.nextLine();
-              System.out.println(Expression.evaluate(userExpression));
+              String lol = userExpression;
+              System.out.println(Expression.evaluate(lol));
               break;
 
             case 2:
               Scanner sc2 = new Scanner(System.in);
               System.out.println("\nEnter an equation to evaluate:");
               String userEquation = sc2.nextLine();
-              System.out.println(Equation.simplify(userEquation));
+              String s = Equation.SimplifyFirst(userEquation);
+              s = Equation.SimplifyVar(s);
+              System.out.println(s);
               break;
 
             case 3:
+              Graph.init();
+              break;
+
+            case 4:
               control = false;
               break;
 
             default:
-            System.out.println("**Type 1, 2, or 3 for the program to work!**");
+            System.out.println("**Type 1, 2,3 OR 4 for the program to work!**");
             }
           }
         }

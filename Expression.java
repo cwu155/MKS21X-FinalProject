@@ -11,7 +11,7 @@ public class Expression{
   public static Integer newNumber;
 
   //Creates an array of tokens.
-  public static String infix; // Should take a user input in the future
+  //public static String infix; // Should take a user input in the future
   public static StringTokenizer st; //Create StringTokenizer Object
   public static List<Token> Tokens = new ArrayList<Token>();   //Create ArrayList Object
   public static List<Token> Stack = new ArrayList<Token>(); //Creates a stack of operations.
@@ -83,8 +83,8 @@ public class Expression{
 
   //Converts infix to postfix notation.
   public static void infixToPostfix(String expression){
-    infix = formatInput(expression);
-    st = new StringTokenizer(infix);
+    //infix = formatInput(expression);
+    st = new StringTokenizer(expression);
     addTokens();
     setPriority();
 
@@ -118,8 +118,8 @@ public class Expression{
     }
 
   //Evaluates postfix notation.
-  public static Double evaluate(String expression){
-    infixToPostfix(expression);
+  public static Double evaluate(String ans){
+    infixToPostfix(ans);
 
     for (Token element : Queue){
                 if (element.getString().equals("+")){
@@ -153,7 +153,7 @@ public class Expression{
     public static void main(String[] args) { //Testing purposes
       //for (Token element : Tokens){System.out.println(element.getString());}
       //System.out.println(formatInput("sin 30"));
-      System.out.println(evaluate("( sin 30 ) + 1"));
+      System.out.println(evaluate("tan 30 + 1"));
 
       }
     }
