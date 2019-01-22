@@ -11,12 +11,11 @@ public class Calculator{
         boolean control = true;
         while (control){
 
-          System.out.println("\nMAIN MENU:");
+          System.out.println("\nMAIN MENU: EVALUATE _____?");
           System.out.println("[1] EXPRESSION");
           System.out.println("[2] EQUATION");
           System.out.println("[3] GRAPH (Y=X)");
-          System.out.println(("[4] BASIC CALCULATIONS"));
-          System.out.println("[5] QUIT\n");
+          System.out.println(("[4] QUIT\n"));
 
 
           Scanner sc = new Scanner(System.in);
@@ -26,15 +25,16 @@ public class Calculator{
           switch(menu_input) {
             case 1:
               Scanner sc1 = new Scanner(System.in);
-              System.out.println("\nEnter an expression to evaluate:");
+              System.out.println("\nEnter an expression to evaluate (Ex. 1 + 6 - 8 or 2^8):");
               String userExpression = sc1.nextLine();
               String lol = userExpression;
               System.out.println(Expression.evaluate(lol));
+              control = false;
               break;
 
             case 2:
               Scanner sc2 = new Scanner(System.in);
-              System.out.println("\nEnter an equation to evaluate:");
+              System.out.println("\nEnter an equation to evaluate: (Ex.3x+9871=984)");
               String userEquation = sc2.nextLine();
               String s = Equation.SimplifyFirst(userEquation);
               s = Equation.SimplifyVar(s);
@@ -50,7 +50,7 @@ public class Calculator{
               break;
 
             default:
-            System.out.println("**Type 1, 2,3 OR 4 for the program to work!**");
+            System.out.println("**Type 1, 2, 3 OR 4 for the program to work!**");
             }
           }
         }

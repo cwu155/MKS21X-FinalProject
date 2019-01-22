@@ -83,8 +83,8 @@ public class Expression{
 
   //Converts infix to postfix notation.
   public static void infixToPostfix(String expression){
-    //infix = formatInput(expression);
-    st = new StringTokenizer(expression);
+    String infix = formatInput(expression);
+    st = new StringTokenizer(infix);
     addTokens();
     setPriority();
 
@@ -153,7 +153,7 @@ public class Expression{
     public static void main(String[] args) { //Testing purposes
       //for (Token element : Tokens){System.out.println(element.getString());}
       //System.out.println(formatInput("sin 30"));
-      System.out.println(evaluate("tan 30 + 1"));
+      //System.out.println(evaluate("tan 30 + 1"));
 
       }
     }

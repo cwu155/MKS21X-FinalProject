@@ -17,7 +17,7 @@ public class Graph {
   public static List<Double> xCoords = new ArrayList<Double>();
   public static List<Double> yCoords = new ArrayList<Double>();
   public static List<Token> Tokens = new ArrayList<Token>();
-  public static String[] Stringss;
+  public static String[] Strings;
   //public static List<String> Strings = new ArrayList<String>();
 
   //y = mx + b
@@ -30,7 +30,7 @@ public class Graph {
     //   Token newToken = new Token(st.nextToken(), 1);
     //   Tokens.add(newToken);
     // }
-    Stringss = equation.split(" ");
+    Strings = equation.split(" ");
 
   }
 
@@ -52,8 +52,8 @@ public class Graph {
     //   }
     // }
     //     b = (Tokens.get(Tokens.size()-1).getString());
-      m = Stringss[2];
-      b = Stringss[Stringss.length-1];
+      m = Strings[2];
+      b = Strings[Strings.length-1];
     }
 
   //Add x-coordinates and y-coordinates to separate arrays.
@@ -79,6 +79,11 @@ public class Graph {
 
   //Initializes entire graph.
   public static void init(){
+
+    split("y = 1 x + 0");
+    setVars();
+    addCoordinates("y = 1 x + 0");
+    
     try {
 
       BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -96,7 +101,7 @@ public class Graph {
       //Actually plots graph.
         int placeHolder = 0;
         int rgb = new Color(255, 0, 0).getRGB();
-         for (int i = 1; i < width; i++){
+         for (int i = 599; i > 0; i--){
            bufferedImage.setRGB((int)Math.round(yCoords.get(i)), (int)Math.round(xCoords.get(i)), rgb);
         //   placeHolder += 1;
           }
