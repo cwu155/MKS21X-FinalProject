@@ -51,3 +51,8 @@
 # January 20th
              - Added equation function to calculator
              - Updated instructions
+             - Started graph class
+             - Updated calculator menu
+         
+# January 21st
+             - Tried to make graph work: did not work :(
