@@ -10,22 +10,28 @@ import javax.imageio.ImageIO;
 public class Graph {
   public static StringTokenizer st;
 
-  public static int width, height;
+  public static int width = 600;
+  public static int height = 600;
+
   public static String m, b;
   public static List<Double> xCoords = new ArrayList<Double>();
   public static List<Double> yCoords = new ArrayList<Double>();
   public static List<Token> Tokens = new ArrayList<Token>();
+  public static String[] Stringss;
+  //public static List<String> Strings = new ArrayList<String>();
 
   //y = mx + b
   //y = 2x + 0
 
   //Splits the equation into separate entities.
   public static void split(String equation){
-    st = new StringTokenizer(equation);
-    while(st.hasMoreTokens()) {
-      Token newToken = new Token(st.nextToken(), 1);
-      Tokens.add(newToken);
-    }
+    // st = new StringTokenizer(equation);
+    // while(st.hasMoreTokens()) {
+    //   Token newToken = new Token(st.nextToken(), 1);
+    //   Tokens.add(newToken);
+    // }
+    Stringss = equation.split(" ");
+
   }
 
   //Checks to see if the token is numeric.
@@ -40,36 +46,40 @@ public class Graph {
 
   //Identifies the slope and y-intercept.
   public static void setVars(){
-    for (int i = 0; i < Tokens.size(); i++){
-      if (isNumber(Tokens.get(i)) && i != Tokens.size()-1){
-        m = (Tokens.get(i).getString());
-      }
-    }
-        b = (Tokens.get(Tokens.size()-1).getString());
+    // for (int i = 0; i < Tokens.size(); i++){
+    //   if (isNumber(Tokens.get(i)) && i != Tokens.size()-1){
+    //     m = (Tokens.get(i).getString());
+    //   }
+    // }
+    //     b = (Tokens.get(Tokens.size()-1).getString());
+      m = Stringss[2];
+      b = Stringss[Stringss.length-1];
     }
 
-  //Evaluate y-coordinates, add x-coordinates and y-coordinates to separate arrays.
+  //Add x-coordinates and y-coordinates to separate arrays.
   public static void addCoordinates(String equation){
-    split(equation);
-    width = 4;
 
     //Add x-coordinates
-    Double i = (width * -1.0);
-    while (i < width){xCoords.add(i); i++;}
+    //Double i = (width * -1.0);
+    //while (i < width){xCoords.add(i); i++;}
+
+    //Add x-coordinates
+    for (Double i = 0.0; i < Double.valueOf(width); i++){
+      xCoords.add(i);
+    }
 
     //Add y-coordinates
-    for (i = (width * -1.0); i < width; i++){
+    for (Double i = Double.valueOf(height); i > 0.0; i--){
       Double ans = (Double.parseDouble(m) * i) + Double.parseDouble(b);
       yCoords.add(ans);
     }
   }
 
 
+
   //Initializes entire graph.
   public static void init(){
     try {
-      width = 1600;
-      height = 800;
 
       BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
       Graphics2D g2d= bufferedImage.createGraphics();
@@ -79,20 +89,22 @@ public class Graph {
 
       //Initializes x-axis and y-axis.
       g2d.setColor(Color.black);
-      g2d.drawLine(-width, height/2 , width, height/2);
-      g2d.drawLine(width/2, -height, width/2, height);
+      g2d.drawLine(0, height/2 , width, height/2);
+      g2d.drawLine(width/2, 0, width/2, height);
 
-      int rgb = new Color(0, 191, 255).getRGB();
 
-      for (int i = 0; i < 800; i++){
-        bufferedImage.setRGB(100, i, rgb);
-      }
+      //Actually plots graph.
+        int placeHolder = 0;
+        int rgb = new Color(255, 0, 0).getRGB();
+         for (int i = 1; i < width; i++){
+           bufferedImage.setRGB((int)Math.round(yCoords.get(i)), (int)Math.round(xCoords.get(i)), rgb);
+        //   placeHolder += 1;
+          }
 
       //Apparently releases any system resources that it's using?
       g2d.dispose();
 
       //Save graph as a JPG file.
-
       File file = new File("myimage.jpg");
       ImageIO.write(bufferedImage, "jpg", file);
 
@@ -101,13 +113,16 @@ public class Graph {
 
 
 	public static void main(String[] args){
-    //init();
-    split("y = 2 x + 1");
+    split("y = 1 x + 0");
     setVars();
-    addCoordinates("y = 2 x + 1");
 
-    //for (Token element : Tokens){System.out.println(element.getString());}
-    for (Double xcoor : xCoords){System.out.println(xcoor);}
-    for (Double ycoor : yCoords){System.out.println(ycoor);}
+
+    addCoordinates("y = 1 x + 0");
+      System.out.println(xCoords.size());
+      System.out.println(yCoords.size());
+    init();
+
+    //for (Double thing : xCoords){System.out.println(thing);}
+    System.out.println(xCoords.size());
 	}
 }
