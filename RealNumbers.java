@@ -159,7 +159,10 @@ public class RealNumbers{
      if ((Integer.parseInt(one) < 0 && Integer.parseInt(two) > 0) || (Integer.parseInt(one) > 0 && Integer.parseInt(two) < 0)){
        sign = "-";
      }
-     if (two == "0"){
+     if (one.equals("0")){
+       return "0";
+     }
+     if (two.equals("0")){
        return "Divide by 0 error!";
      }
      //If string one has a variable...
@@ -278,9 +281,9 @@ public class RealNumbers{
 //      System.out.println(divide(a,"x")); //4x
 //      System.out.println(divide("11x","12y")); //0xy
 //        System.out.println(multiply("123x","2y"));
-//        System.out.println(divide("124x","2y"));
+        System.out.println(divide("0","2y"));
 
-     System.out.println(GCF("9x","15x")); //3
+//     System.out.println(GCF("9x","15x")); //3
 //     System.out.println("100".GCF("1")); //1
 //     System.out.println(sqrt("4")); //2
    }
